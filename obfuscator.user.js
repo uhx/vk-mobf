@@ -38,6 +38,24 @@
         return target.split(search).join(replaceto);
     };
 
+    function ObfuscateText( text )
+    {
+        var obfuscated_text = "";
+        var source_text = text;
+
+        for( let x in replacement )
+        {
+            source_text = source_text.replaceAll( x, replacement[x] );
+        }
+
+        for( let x = 0; x < source_text.length; x++ )
+        {
+            obfuscated_text += invisible_char + source_text[x];
+        }
+
+        return obfuscated_text;
+    }
+
     function setKeydownHook()
     {
         let im_chat_input = document.querySelector(".im-chat-input--txt-wrap");
@@ -53,50 +71,40 @@
             // skip Shift+ or Alt+ events
             if( event.key == "Enter"
                && !event.shiftKey && !event.ctrlKey )
-            {
-                var source_text = im_editable.innerText;
-                // do not obfuscate links
-                // todo: detect links in message body
-                //       not only at the beginning
-                if( source_text.startsWith( "http" ) )
-                    return;
+            {            
+                var new_text = im_editable.innerText;
+                var regexp = /\w+?:\/\/[^\s/$.?#]*.[^\s]*/
+                // exclude URLS
+                var parts = new_text.split( regexp );
 
-                //console.log( event );
-                for( let x in replacement )
-                {
-                    source_text = source_text.replaceAll( x, replacement[x] );
-                }
+                parts.forEach(function(part){
+                    new_text = new_text.replace( part, ObfuscateText(part) );
+                });
 
-                var obfuscated_text = "";
+                console.log( new_text );
 
-                for (let x = 0; x < source_text.length; x++)
-                {
-                    obfuscated_text += invisible_char + source_text[x];
-                }
-
-                im_editable.innerText = obfuscated_text;
+                im_editable.innerText = "";
             }
         }, true );
 
-        console.log( "im_chat_input hooked!" );
+        //console.log( "im_chat_input hooked!" );
     }
 
     // track all changes
     const pmPageObserver = new MutationObserver(function(mutations){
         mutations.forEach(function(mutation)
         {
-            if( mutation.target.classList.contains("im-chat-input--txt-wrap") )
+            if( mutation.target
+                && mutation.target.classList.contains("im-chat-input--txt-wrap") )
             {
-                if( mutation.nextSibling.classList )
+                if( mutation.nextSibling
+                    && mutation.nextSibling.classList )
                 {
                     setKeydownHook();
                 }
             }
         });
     });
-    //-- Don't run on frames or iframes
-    if (window.top != window.self)
-    { return; }
 
     var wrap3 = document.getElementById("wrap3");
 
@@ -107,7 +115,7 @@
     // setup observer
     pmPageObserver.observe( wrap3, options );
 
-    console.log( "obfs loaded!" );
+    console.log( "mobf loaded!" );
 
     //setKeydownHook();
 })();
