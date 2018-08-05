@@ -84,7 +84,7 @@
     // track all changes
     const pmPageObserver = new MutationObserver(function(mutations){
         mutations.forEach(function(mutation)
-                          {
+        {
             if( mutation.target.classList.contains("im-chat-input--txt-wrap") )
             {
                 if( mutation.nextSibling.classList )
