@@ -2,7 +2,7 @@
 // @name         VK Obfuscator
 // @namespace    https://github.com/uhx/vk-mobf
 // @version      1.0
-// @description  autoselection planets/zones etc
+// @description  obfuscate private messages
 // @author       uhx
 // @match        https://vk.com/*
 // @downloadURL  https://raw.githubusercontent.com/uhx/vk-mobf/master/obfuscator.user.js
