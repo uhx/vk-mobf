@@ -81,9 +81,7 @@
                     new_text = new_text.replace( part, ObfuscateText(part) );
                 });
 
-                console.log( new_text );
-
-                im_editable.innerText = "";
+                im_editable.innerText = new_text;
             }
         }, true );
 
