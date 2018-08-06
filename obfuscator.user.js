@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Obfuscator
 // @namespace    https://github.com/uhx/vk-mobf
-// @version      1.1
+// @version      1.1a
 // @description  obfuscate private messages
 // @author       uhx
 // @match        https://vk.com/*
@@ -33,7 +33,7 @@
        added between message characters */
     var invisible_char = "\u2064"
 
-    String.prototype.replaceAll = function(search, replaceto) {
+    String.prototype.replaceAll = function( search, replaceto ){
         var target = this;
         return target.split(search).join(replaceto);
     };
@@ -61,7 +61,7 @@
         let im_chat_input = document.querySelector(".im-chat-input--txt-wrap");
 
         if( !im_chat_input )
-        { return; }
+            return;
         // change default placeholder
         document.querySelector(".ph_content").innerText += " and it will be obfuscated!";
         // message input box
@@ -84,11 +84,9 @@
                 im_editable.innerText = new_text;
             }
         }, true );
-
-        //console.log( "im_chat_input hooked!" );
     }
 
-    // track all changes
+    /* track all changes */
     const pmPageObserver = new MutationObserver(function(mutations){
         mutations.forEach(function(mutation)
         {
@@ -105,7 +103,7 @@
     });
     
     if( window.top != window.self )
-    { return; }
+        return;
 
     var wrap3 = document.getElementById("wrap3");
 
@@ -113,10 +111,8 @@
         'childList': true,
         'subtree': true
     };
-    // setup observer
+    /* setup observer */
     pmPageObserver.observe( wrap3, options );
 
-    console.log( "mobf loaded!" );
-
-    //setKeydownHook();
+    console.log( "vk-mobf loaded!" );
 })();
