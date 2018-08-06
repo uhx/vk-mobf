@@ -103,6 +103,9 @@
             }
         });
     });
+    
+    if( window.top != window.self )
+    { return; }
 
     var wrap3 = document.getElementById("wrap3");
 
