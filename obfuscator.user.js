@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Obfuscator
 // @namespace    https://github.com/uhx/vk-mobf
-// @version      1.0
+// @version      1.1
 // @description  obfuscate private messages
 // @author       uhx
 // @match        https://vk.com/*
