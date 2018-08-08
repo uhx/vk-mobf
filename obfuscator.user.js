@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Obfuscator
 // @namespace    https://github.com/uhx/vk-mobf
-// @version      1.2b
+// @version      1.2c
 // @description  obfuscate private messages
 // @author       uhx
 // @match        https://vk.com/*
@@ -63,9 +63,9 @@
         if( !im_chat_input )
             return;
         // change default placeholder
-        document.querySelector(".ph_content").innerText += " and it will be obfuscated!";
+        im_chat_input.querySelector(".ph_content").innerText += " and it will be obfuscated!";
         // message input box
-        let im_editable = im_chat_input.getElementsByClassName( "im_editable" )[0]
+        let im_editable = im_chat_input.querySelector( ".im_editable" )
 
         im_chat_input.addEventListener( "keydown", function(event){
             // skip Shift+ or Alt+ events
