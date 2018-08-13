@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VK Obfuscator
 // @namespace    https://github.com/uhx/vk-mobf
-// @version      1.2c
+// @version      1.3
 // @description  obfuscate private messages
 // @author       uhx
 // @match        https://vk.com/*
@@ -73,9 +73,11 @@
                && !event.shiftKey && !event.ctrlKey )
             {            
                 var new_text = im_editable.innerText;
-                var regexp = /\w+?:\/\/[^\s/$.?#]*.[^\s]*/
-                // exclude URLS
+                var regexp = /(?:\w+?:\/\/[^\s/$.?#]*.[^\s]*)|(?:@id\d+? \(.*?\))/
+                // exclude URLS and mentions
                 var parts = new_text.split( regexp );
+                
+                console.log( parts );
 
                 parts.forEach(function(part){
                     new_text = new_text.replace( part, ObfuscateText(part) );
