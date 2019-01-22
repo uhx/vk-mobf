@@ -11,8 +11,8 @@
 
 (function() {
     /* chars to replace
-       cp1251 on the left side
-       ansi on the right (english) */
+       cyrillic on the left side
+       latin on the right        */
     let replacement = {
         "а" : "a",
         "А" : "A",
@@ -38,7 +38,7 @@
         return target.split(search).join(replaceto);
     };
 
-    function ObfuscateText( text )
+    function obfuscateText( text )
     {
         var obfuscated_text = "";
         var source_text = text;
@@ -80,7 +80,7 @@
                 console.log( parts );
 
                 parts.forEach(function(part){
-                    new_text = new_text.replace( part, ObfuscateText(part) );
+                    new_text = new_text.replace( part, obfuscateText(part) );
                 });
 
                 im_editable.innerText = new_text;
