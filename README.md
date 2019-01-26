@@ -10,4 +10,4 @@ First install plugin for your browser:
 * [Tampermonkey](https://tampermonkey.net/) – Chrome, Microsoft Edge, Safari, Opera, Firefox
 
 # INSTALLATION
-click [here](https://raw.githubusercontent.com/uhx/vk-mobf/master/obfuscator.user.js) and script will be automatically inserted into your vk page.
+click [here](https://raw.githubusercontent.com/uhx/vk-mobf/master/interceptor.user.js) and script will be automatically inserted into your vk page.

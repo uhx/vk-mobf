@@ -165,7 +165,7 @@ function Main() {
         
         var obfuscated_msg = msg;
         
-        var regexp = /\w+?:\/\/[^\s/$.?#]*.[^\s]*/
+        var regexp = /(?:\w+?:\/\/[^\s/$.?#]*.[^\s]*)|(?:@id\d+? \(.*?\))/
         // exclude URLS
         var parts = msg.split( regexp );
 
